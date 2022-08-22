@@ -21,7 +21,8 @@ def build_pigeon(client, spec: dict):
     data = yaml.safe_load_all(template.render(
         pig_name=spec["app-name"],
         git_repo=spec["git-repo"],
-        container_port=spec["service-port"]
+        container_port=spec["service-port"],
+        ssh_key=spec.get("git-repo-secret", False)
         ))
     try:
         kubernetes.utils.create_from_yaml(client,None,data)
@@ -30,6 +31,7 @@ def build_pigeon(client, spec: dict):
             print("Resource already Exists")
         else:
             print("Other error")
+
 def delete_pigeon(api, appapi, spec):
     # Delete deployment
     resp = appapi.delete_namespaced_deployment(
