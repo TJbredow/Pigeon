@@ -47,6 +47,9 @@ metadata:
     name: pigeon-operator
 spec:
   replcias: 1
+  selector:
+    matchLabels:
+      app: pigeon-operator
   template:
     spec:
       containers:
