@@ -51,6 +51,8 @@ spec:
     matchLabels:
       app: pigeon-operator
   template:
+      labels:
+        name: pigeon-operator
     spec:
       containers:
       - name: pigeon-operator
