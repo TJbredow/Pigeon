@@ -10,6 +10,8 @@ CRD_GROUP = 'tbkb.info'
 CRD_VERSION = 'v1'
 CRD_PLURAL = 'pigeons'
 
+with open('/var/run/secrets/kubernetes.io/serviceaccount/namespace') as nsf:
+    NAMESPACE = nsf.read()
 # kubernetes.config.load_kube_config()
 kubernetes.config.load_incluster_config()
 def build_pigeon(client, spec: dict):
@@ -36,14 +38,14 @@ def delete_pigeon(api, appapi, spec):
     # Delete deployment
     resp = appapi.delete_namespaced_deployment(
         name=spec["app-name"],
-        namespace="default",
+        namespace=NAMESPACE,
         body=kubernetes.client.V1DeleteOptions(
             propagation_policy="Foreground", grace_period_seconds=5
         ),
     )
     resp = api.delete_namespaced_service(
         name=spec["app-name"],
-        namespace="default"
+        namespace=NAMESPACE
     )
     print(spec["app-name"] + " deleted")
 def load_crd(namespace, name):
