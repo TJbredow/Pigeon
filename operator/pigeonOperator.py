@@ -70,7 +70,7 @@ def watcher():
     custom_api = kubernetes.client.CustomObjectsApi(client)
     while True:
         w = kubernetes.watch.Watch()
-        for event in w.stream(custom_api.list_namespaced_custom_object, group=CRD_GROUP, version=CRD_VERSION, namespace='default', plural=CRD_PLURAL):
+        for event in w.stream(custom_api.list_namespaced_custom_object, group=CRD_GROUP, version=CRD_VERSION, namespace=NAMESPACE, plural=CRD_PLURAL):
             print("Event: %s %s %s" % (event['type'], event['object']['kind'], event['object']['metadata']['name']))
             if event['type'] == 'ADDED':
                 build_pigeon(client, event['object']['spec'])
