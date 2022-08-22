@@ -28,10 +28,20 @@ spec:
         volumeMounts:
         - name: p-cache
           mountPath: /var/lib/containers
+      {% if ssh_key %}
+        - name: ssh-kee
+          readOnly: true
+          mountPath: /kee
+      {% endif %}
       volumes:
       - name: p-cache
         persistentVolumeClaim:
           claimName: pigeon-cache-pvc 
+      {% if ssh_key %}
+      - name: ssh-kee
+        secret: 
+          secretName: {{ssh_kee}}
+      {% endif %}c 
 ---
 apiVersion: v1
 kind: Service
