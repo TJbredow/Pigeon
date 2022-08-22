@@ -6,4 +6,4 @@ COPY . /app
 
 WORKDIR /app
 
-CMD ["sh","-c","python3","operator.py"]
+CMD ["sh","-c","python3","pigeonOperator.py"]
