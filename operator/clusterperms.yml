@@ -53,7 +53,7 @@ spec:
   template:
     metadata:
       labels:
-        name: pigeon-operator
+        app: pigeon-operator
     spec:
       containers:
       - name: pigeon-operator
