@@ -10,8 +10,8 @@ CRD_GROUP = 'tbkb.info'
 CRD_VERSION = 'v1'
 CRD_PLURAL = 'pigeons'
 
-kubernetes.config.load_kube_config()
-#kubernetes.config.load_incluster_config()
+# kubernetes.config.load_kube_config()
+kubernetes.config.load_incluster_config()
 def build_pigeon(client, spec: dict):
     env = Environment(
         loader=PackageLoader("pigeonOperator"),
