@@ -1,7 +1,8 @@
 #!/bin/sh
 
 if [ -f "/kee/ssh-privatekey" ]; then
-    GIT_SSH_COMMAND='ssh -i /kee/ssh-privatekey -o IdentitiesOnly=yes' git clone $1 /app
+    cp /kee/ssh-privatekey /opt/kee && chmod 700 /opt/kee
+    GIT_SSH_COMMAND='ssh -i /opt/kee -o IdentitiesOnly=yes -o StrictHostKeyChecking=no' git clone $1 /app
 else
     git clone $1 /app
 fi

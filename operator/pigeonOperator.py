@@ -9,7 +9,6 @@ import yaml
 CRD_GROUP = 'tbkb.info'
 CRD_VERSION = 'v1'
 CRD_PLURAL = 'pigeons'
-
 with open('/var/run/secrets/kubernetes.io/serviceaccount/namespace') as nsf:
     NAMESPACE = nsf.read()
 # kubernetes.config.load_kube_config()
@@ -33,7 +32,7 @@ def build_pigeon(client, spec: dict):
         if "AlreadyExists" in e.api_exceptions[0].body:
             print("Resource already Exists")
         else:
-            print("Other error")
+            print(e)
 
 def delete_pigeon(api, appapi, spec):
     # Delete deployment
