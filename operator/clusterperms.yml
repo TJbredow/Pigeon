@@ -22,7 +22,7 @@ rules:
   - apiGroups: ["tbkb.info"]
     resources: ["pigeons"]
     verbs: ["get", "watch", "list"]
-  - apiGroups: [""]
+  - apiGroups: ["apps",""]
     resources: ["secrets", "configmaps","deployments","services","ingresses"]
     verbs: ["*"]
 ---

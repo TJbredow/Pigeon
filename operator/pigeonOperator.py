@@ -23,6 +23,7 @@ def build_pigeon(client, spec: dict):
     data = yaml.safe_load_all(template.render(
         pig_name=spec["app-name"],
         git_repo=spec["git-repo"],
+        namespace=NAMESPACE,
         container_port=spec["service-port"],
         ssh_key=spec.get("git-repo-secret", False)
         ))
