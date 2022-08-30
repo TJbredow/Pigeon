@@ -6,6 +6,9 @@ if [ -f "/kee/ssh-privatekey" ]; then
 else
     git clone $1 /app
 fi
-
-podman build -t container-svc.default.svc.cluster.local:5000/$2 /app
-podman push container-svc.default.svc.cluster.local:5000/$2
+if [ -f "/repokee/.dockerconfigjson" ]; then
+    chmod -R 700 /repokee
+    REGISTRY_AUTH_FILE=/repokee/.dockerconfigjson
+fi
+podman build -t registry-svc.default.svc.cluster.local:5000/$2 /app
+podman push registry-svc.default.svc.cluster.local:5000/$2

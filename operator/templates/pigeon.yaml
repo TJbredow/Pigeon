@@ -33,6 +33,11 @@ spec:
           readOnly: true
           mountPath: /kee
       {% endif %}
+      {% if image_key %}
+        - name: image-kee
+          readOnly: true
+          mountPath: /repokee
+      {% endif %}
       volumes:
       - name: p-cache
         persistentVolumeClaim:
@@ -40,7 +45,13 @@ spec:
       {% if ssh_key %}
       - name: ssh-kee
         secret: 
-          secretName: {{ssh_key}}
+          secretName: {{ ssh_key }}
+      {% endif %} 
+      {% if image_key %}
+      - name: image-kee
+        secret:
+          defaultMode: 700
+          secretName: {{ image_key }}
       {% endif %} 
 ---
 apiVersion: v1

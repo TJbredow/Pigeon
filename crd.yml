@@ -11,13 +11,13 @@ spec:
     schema:
       openAPIV3Schema:
         type: object
-        required:
-          - app-name
-          - git-repo
-          - service-port
         properties:
           spec:
             type: object
+            required:
+              - app-name
+              - git-repo
+              - service-port
             properties:
               app-name:
                 type: string
@@ -26,6 +26,8 @@ spec:
               service-port:
                 type: integer
               git-repo-secret:
+                type: string
+              image-repo-secret:
                 type: string
   scope: Namespaced
   names:

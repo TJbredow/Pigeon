@@ -24,7 +24,8 @@ def build_pigeon(client, spec: dict):
         git_repo=spec["git-repo"],
         namespace=NAMESPACE,
         container_port=spec["service-port"],
-        ssh_key=spec.get("git-repo-secret", False)
+        ssh_key=spec.get("git-repo-secret", False),
+        image_key=spec.get("git-repo-secret", False)
         ))
     try:
         kubernetes.utils.create_from_yaml(client,None,data)
